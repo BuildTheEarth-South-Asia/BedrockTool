@@ -51,22 +51,22 @@ public class BedrockTool {
         System.out.println("[Bedrock Tool]Converting from Anvil to Nukkit...");
 
         String src2 = tempDir + "/layer [" + minHeight + ", " + (minHeight + 256) + "]";
-        WorldConverter<?, ?> converter2 = new WorldConverter<>(
-                (LevelInfoConverter<Object, Object>)Registry.getLevelConverter("Anvil", "Nukkit").apply(
-                        Paths.get(src2),
-                        Paths.get(out)
-                ),
-                (ChunkDataReader<Object>)Registry.getReader("Anvil").apply(Paths.get(src2)),
-                (ChunkDataConverter<Object, Object>)Registry.getConverter("Anvil", "Nukkit").get(),
-                (ChunkDataWriter<Object>)Registry.getWriter("Nukkit").apply(Paths.get(out)));
-        converter2.convert(new IProgressListener() {
-            public void update(Void aVoid) {
-            }
+        //WorldConverter<?, ?> converter2 = new WorldConverter<>(
+                //(LevelInfoConverter<Object, Object>)Registry.getLevelConverter("Anvil", "Nukkit").apply(
+                       // Paths.get(src2),
+                       // Paths.get(out)
+                //),
+             //   (ChunkDataReader<Object>)Registry.getReader("Anvil").apply(Paths.get(src2)),
+            //    (ChunkDataConverter<Object, Object>)Registry.getConverter("Anvil", "Nukkit").get(),
+           //     (ChunkDataWriter<Object>)Registry.getWriter("Nukkit").apply(Paths.get(out)));
+       // converter2.convert(new IProgressListener() {
+        //    public void update(Void aVoid) {
+        //    }
 
-            public ErrorHandleResult error(Throwable throwable) {
+        //    public ErrorHandleResult error(Throwable throwable) {
                 return null;
-            }
-        });
+         //   }
+     //   });
         Files.walk(tempDir).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
         Files.copy(Paths.get(src).resolve("height"),Paths.get(out).resolve("height"));
     }
